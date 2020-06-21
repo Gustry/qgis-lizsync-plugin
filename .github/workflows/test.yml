@@ -1,4 +1,4 @@
-name: Flake8
+name: Tests
 
 on:
   push:
@@ -27,3 +27,27 @@ jobs:
           checkName: 'flake8_py3'   # NOTE: this needs to be the same as the job name
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  test-qgis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - run: cd .docker
+      - name: Launching docker-compose
+        run: ./start.sh with-qgis
+      - name: Running tests
+        run: ./exec.sh
+
+  test-migration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - run: cd .docker
+      - name: Launching docker-compose
+        run: ./start.sh
+      - name: Running tests
+        run: ./install_migrate_generate.sh
