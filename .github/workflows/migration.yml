@@ -16,6 +16,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Docker Login
+      uses: azure/docker-login@v1
+      with:
+        login-server: docker.pkg.github.com
+        username: $GITHUB_ACTOR
+        password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Check out repository
         uses: actions/checkout@v2
 
