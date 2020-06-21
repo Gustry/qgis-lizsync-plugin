@@ -5,7 +5,7 @@ networks:
 
 services:
   db:
-    image: kartoza/postgis:10.0-2.4  # Despite the tag, it's a 10.6 version
+    image: docker.pkg.github.com/3liz/qgis-lizsync-plugin/postgis:10.6-2.4
     hostname: db
     container_name: postgis
     networks:
