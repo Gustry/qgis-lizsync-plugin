@@ -1,0 +1,22 @@
+name: Translations 🗺️
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+
+    - name: Install qgis-plugin-ci
+      run: pip3 install git+https://github.com/Gustry/qgis-plugin-ci.git
+
+    - name: Push to transifex
+      run: qgis-plugin-ci push-translation ${TX_TOKEN}
