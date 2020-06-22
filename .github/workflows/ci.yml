@@ -5,7 +5,7 @@ on:
     branches:
       - master
     tags:
-      - '^\d+\.\d+\.\d+$'
+      - ^\d+\.\d+\.\d+$
   pull_request:
     branches:
       - master
