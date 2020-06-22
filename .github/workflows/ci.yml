@@ -84,9 +84,8 @@ jobs:
           body_path: ../release.md
           draft: false
           prerelease: false
+      - name: Deploy plugin
+        run: qgis-plugin-ci release ${{ github.ref }} --github-token ${secrets.GH_TOKEN} --create-plugin-repo --allow-uncommitted-changes
 
-    - name: Deploy plugin
-      run: qgis-plugin-ci release ${{ github.ref }} --github-token ${secrets.GH_TOKEN} --create-plugin-repo --allow-uncommitted-changes
-
-    - name: Update code-source
-      run: .github/push_to_github.sh
+      - name: Update code-source
+        run: .github/push_to_github.sh
