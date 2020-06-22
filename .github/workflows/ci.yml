@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - master
+    tags:
+      - '^\d+\.\d+\.\d+$'
   pull_request:
     branches:
       - master
-#  tags:
-#    - '^\d+\.\d+\.\d+$'
 
 jobs:
   test-flake8:
